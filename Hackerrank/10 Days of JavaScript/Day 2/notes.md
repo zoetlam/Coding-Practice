@@ -53,34 +53,58 @@ Output: `"A"`
   1. Each **vowel** (`a, e, i, o, u`) on a new line, in the order they appear.  
   2. Each **consonant** (non-vowel) on a new line, also in the same order.  
 
-### My Approach
-- Defined a string of vowels:  
-  ```javascript
-  const vowel = "aeiou";
-  ```
+### My Approach - Solution 1 (for loop + array + forEach)
+- Iterate through the string once.  
+- If the character is a vowel → print immediately.  
+- If it is a consonant → push it into an array.  
+- After the loop ends, print all consonants using **forEach**.  
 
-- Used a for loop to iterate through each character in the string.
-- Checked if the character is a vowel using .includes():
-If vowel → print immediately.
-If consonant → push into an array.
-After loop, used .forEach() to print consonants in order.
 ```javascript
 function vowelsAndConsonants(s) {
-    let array = [];
-    const vowel = "aeiou";
+    const vowels = "aeiou";
+    const consonants = [];
+
     for (let i = 0; i < s.length; i++) {
-        if (vowel.includes(s[i])) {
+        if (vowels.includes(s[i])) {
             console.log(s[i]);
         } else {
-            array.push(s[i]);
+            consonants.push(s[i]);
         }
     }
-    array.forEach((element) => console.log(element));
+
+    consonants.forEach(ch => console.log(ch));
 }
 ```
+- Time Complexity: O(n) → single pass through the string.
+- Space Complexity: O(n) → stores consonants in an array.
+
+### Solution 2 Using for...of (Two Loops, No Extra Array)
+- Use `for...of` loop for cleaner iteration.
+- First loop prints vowels.
+- Second loop prints consonants.
+- No extra memory allocation.
+```javascript
+function vowelsAndConsonants(s) {
+    const vowels = "aeiou";
+
+    // Print vowels
+    for (const ch of s) {
+        if (vowels.includes(ch)) console.log(ch);
+    }
+
+    // Print consonants
+    for (const ch of s) {
+        if (!vowels.includes(ch)) console.log(ch);
+    }
+}
+```
+- Time Complexity: O(n) → two passes, but still linear.
+- Space Complexity: O(1) → no extra array needed.
 
 ### What I Learned
-- How to use loops to traverse a string character by character.
-- `.includes()` is a simple way to check membership inside a string/array.
-- Difference between printing immediately vs storing for later.
-- Arrow functions `array.forEach((element) => console.log(element))` make iteration concise.
+- Practiced different loop styles in JavaScript (`for`, `forEach`, `for...of`).  
+- Learned the trade-offs between **time efficiency** and **space efficiency**:  
+  - One-pass with extra memory vs. two-pass with no extra memory.  
+- Saw that `for...of` is clean and allows `break`/`continue`, while `forEach` cannot break early.  
+- Reinforced the use of **`.includes()`** for membership checks in strings.  
+- Writing two solutions to the same problem improved my ability to think about **alternative approaches**.
