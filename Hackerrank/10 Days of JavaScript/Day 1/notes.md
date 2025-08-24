@@ -25,6 +25,7 @@
       return 2 * (length + width);
   }
 
+---
 
 ## 2. Functions
 
@@ -61,12 +62,14 @@ function factorial(n) {
     return n * factorial(n - 1);
 }
 ```
-What I Learned
+### What I Learned
 - `value--` is shorthand for value = value - 1.
 - Iterative loops are straightforward; recursion is more elegant but can be harder to debug.
 - Recursion depth is safe here because of small constraint (1 ≤ n ≤ 10).
 
-## 3.Let and Const (Circle Area & Perimeter)
+---
+
+## 3. Let and Const (Circle Area & Perimeter)
 
 ### Problem
 - Declare a **constant** variable `PI` and assign it `Math.PI`.  
