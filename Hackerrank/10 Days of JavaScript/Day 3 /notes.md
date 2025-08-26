@@ -30,7 +30,7 @@ Given an array with number. Find **the seconde largest number** in the array.
 Input: `[5, 4, 7, 2, 3, 3, 5, 1]`  
 Output: `5`
 
----
+--- 
 ## 2. Try, Catch, and Finally (Reverse a String)
 
 ### Problem
@@ -75,3 +75,42 @@ function reverseString(s) {
 - `catch(error)` gives access to the error object, and error.message is the human-readable message.
 - In this problem, if s is not a string → `.split("")` throws an exception → caught by catch.
 - Even when an error occurs, the program **continues running safely**.
+
+---
+
+## 3. Throw (Error Handling)
+
+### Problem
+- Implement the function `isPositive(a)` with the following rules:  
+  - If `a > 0` → return `"YES"`.  
+  - If `a == 0` → throw an `Error` with the message `"Zero Error"`.  
+  - If `a < 0` → throw an `Error` with the message `"Negative Error"`.  
+
+
+### My Approach
+- Used a `switch(true)` structure instead of `if...else if`.  
+- Each case checks a condition:  
+  - `a > 0` → return `"YES"`.  
+  - `a === 0` → throw `"Zero Error"`.  
+  - `a < 0` → throw `"Negative Error"`. 
+
+```javascript
+function isPositive(a) {
+    switch (true) {
+        case (a > 0): return "YES";
+        case (a === 0): throw new Error("Zero Error");
+        case (a < 0): throw new Error("Negative Error");
+    }
+}
+```
+### What I Learned
+- The `throw` keyword is for signaling exceptional states — not valid results.
+- Returning `"Zero Error"` would mix error flow with normal output; **throwing an Error** clearly separates them.
+- Using `switch(true)` can sometimes be more readable than a long `if...else` if chain.
+- I also learned that `switch` may use slightly less memory than multiple `if...else` conditions because it evaluates once and jumps to the matching case. (In practice, the performance difference is minor for small inputs, but `switch` can be cleaner and more efficient for many conditions).
+- **Return** vs **Throw**:
+  - Use `return` when a valid result can be provided.
+  - Use `throw` when the input/state is invalid and should not be processed further.
+- **Switch** vs **If-Else**:
+  - Both solve the problem, but `switch(true)` can be cleaner and may use less memory for multiple conditions.
+  - Readability and intent are often more important than micro-optimizations.
