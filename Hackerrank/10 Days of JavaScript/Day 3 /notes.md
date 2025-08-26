@@ -29,3 +29,49 @@ Given an array with number. Find **the seconde largest number** in the array.
 ### Example
 Input: `[5, 4, 7, 2, 3, 3, 5, 1]`  
 Output: `5`
+
+---
+## 2. Try, Catch, and Finally (Reverse a String)
+
+### Problem
+- Write a function `reverseString(s)` that:
+  1. Tries to reverse the string `s` using `split()`, `reverse()`, and `join()`.  
+  2. If an exception is thrown, catch it and print the **exception’s message**.  
+  3. Always print `s`:  
+     - If no exception → print the reversed string.  
+     - If exception → print the original string.  
+
+### My Approach
+- Used `try...catch` to handle possible runtime errors.  
+- Inside the `try` block:  
+  - `s.split("")` → convert string into array of characters.  
+  - `.reverse()` → reverse the array.  
+  - `.join("")` → join characters back into a string.  
+  - Print the reversed string.  
+- If input is **not a string** (e.g., number, boolean, object), `.split()` will throw an error.  
+- In the `catch` block:  
+  - Print `error.message`.  
+  - Print the original `s`.  
+
+```javascript
+function reverseString(s) {
+    try {
+        let arr = s.split("");
+        let reversed = arr.reverse();
+        let joined = reversed.join("");
+        console.log(joined);
+    } catch (error) {
+        console.log(error.message);
+        console.log(s);
+    }
+}
+```
+### What I Learned
+- `try...catch` is used when code might throw an error at runtime.
+- Useful when:
+  - Working with user input (unpredictable types).
+  - Handling JSON parsing, API responses, or file operations.
+  - Preventing a program from crashing unexpectedly.
+- `catch(error)` gives access to the error object, and error.message is the human-readable message.
+- In this problem, if s is not a string → `.split("")` throws an exception → caught by catch.
+- Even when an error occurs, the program **continues running safely**.
