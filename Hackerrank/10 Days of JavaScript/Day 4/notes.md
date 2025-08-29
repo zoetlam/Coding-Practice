@@ -73,3 +73,70 @@ function getCount(objects) {
 - Practiced iterating over arrays of objects with `for...of`.
 - Learned how to access object properties using dot notation (`element.x`, `element.y`).
 - Problems may look wordy, but the key idea is simple: filter and count.
+
+---
+
+## 3. Constructor Function vs Class in JavaScript
+
+### Problem
+Understand what a **constructor function** is in JavaScript, how it creates objects, and how it relates to the **class** syntax.
+
+---
+
+### My Approach
+- Reviewed how constructor functions work with the `new` keyword.  
+- Compared them to ES6 `class`, which is syntactic sugar.  
+- Clarified the role of **prototype** in sharing methods.  
+
+---
+
+### Constructor Function
+```javascript
+function Polygon(sides) {
+  this.sides = sides; // property belongs to each object
+}
+
+// method shared by all instances (on prototype)
+Polygon.prototype.perimeter = function () {
+  return this.sides.reduce((sum, x) => sum + x, 0);
+};
+
+// create an object (instance)
+const triangle = new Polygon([3, 4, 5]);
+console.log(triangle.perimeter()); // 12
+```
+
+- `Polygon` is a constructor function (used with `new`).
+- `triangle` is an object (instance) created by that constructor.
+- `perimeter` lives on `Polygon.prototype`, so **all instances share it**.
+
+**Class (ES6 Syntax)**
+```javascript
+class Polygon {
+  constructor(sides) {
+    this.sides = sides;
+  }
+
+  perimeter() {
+    return this.sides.reduce((sum, x) => sum + x, 0);
+  }
+}
+
+const triangle = new Polygon([3, 4, 5]);
+console.log(triangle.perimeter()); // 12
+```
+- `class Polygon` is just **syntactic sugar** for constructor + prototype.
+- Under the hood, it works the same way as the constructor function.
+
+### What I Learned
+- **Constructor Function**:
+    - Regular function, used with `new`.
+    - Initializes properties with `this`.
+    - Methods should be placed on `.prototype` to save memory.
+- **Class**:
+    - Cleaner syntax introduced in ES6.
+    - Still uses constructor + prototype internally.
+    - Easier to read and maintain.
+- **Prototype**:
+    - A special object where shared methods are stored.
+    - All instances created from the same constructor/class reference it.
